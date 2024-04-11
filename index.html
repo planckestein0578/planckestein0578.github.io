@@ -1,1 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <style>
+        /* General styles */
+        body {
+            background-color: #3498db; /* Blue background color */
+            color: #fff; /* White text color */
+            font-family: Arial, sans-serif; /* Font family */
+            margin: 0;
+            padding: 0;
+        }
 
+        header {
+            background-color: #2980b9; /* Darker blue header */
+            padding: 20px;
+        }
+
+        nav button {
+            background-color: #2980b9; /* Button background color */
+            color: #fff; /* Button text color */
+            border: none;
+            padding: 10px 20px;
+            margin: 0 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s; /* Smooth transition */
+        }
+
+        nav button:hover {
+            background-color: #1e69a3; /* Darker button color on hover */
+            transform: scale(1.1); /* Button scale on hover */
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        section {
+            margin-bottom: 20px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent white background */
+            border-radius: 10px; /* Rounded corners */
+            transition: transform 0.3s; /* Smooth transition */
+        }
+
+        section:hover {
+            transform: translateY(-5px); /* Section move up on hover */
+        }
+
+        /* Hidden class for hiding sections */
+        .hidden {
+            display: none;
+        }
+
+        /* Interactive styles for links */
+        a {
+            color: #fff; /* Link color */
+            text-decoration: none; /* Remove underline */
+            transition: color 0.3s; /* Smooth color transition */
+        }
+
+        a:hover {
+            color: #f1c40f; /* Yellow link color on hover */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>My Portfolio</h1>
+        <nav>
+            <button onclick="showSection('about')">About Me</button>
+            <button onclick="showSection('contact')">Contact</button>
+            <button onclick="showSection('arduino')">Arduino Projects</button>
+            <button onclick="showSection('fortran')">Fortran Projects</button>
+            <button onclick="showSection('design')">Graphic Design Projects</button>
+        </nav>
+    </header>
+
+    <main>
+        <section id="about" class="hidden">
+            <!-- About Me Content Goes Here -->
+            <h2>About Me</h2>
+            <p>
+                <p>Hey there! I'm all about diving headfirst into the world of <span style="color: #f1c40f; text-decoration: underline; cursor: pointer;">computers</span> and <span style="color: #f1c40f; text-decoration: underline; cursor: pointer;">science</span>. It's like this endless adventure where every discovery leads to another question. 🌟</p>
+<p>You'll usually find me buried in my laptop, tinkering with code and exploring the wonders of <span style="color: #f1c40f; text-decoration: underline; cursor: pointer;">computer science</span>. I've been getting my hands dirty with stuff like <span style="color: #f1c40f; text-decoration: underline; cursor: pointer;">Fortran</span>, <span style="color: #f1c40f; text-decoration: underline; cursor: pointer;">Linux</span>, and <span style="color: #f1c40f; text-decoration: underline; cursor: pointer;">Arduino</span>, just trying to soak up as much knowledge as I can.</p>
+<p><span style="color: #f1c40f; text-decoration: underline; cursor: pointer;">Arduino</span>, in particular, has been a real game-changer for me. I've been cooking up all sorts of projects with it, from simple circuits to more complex setups. It's like being a mad scientist in my own little lab!</p>
+<p>But it's not all about computers for me. I've got a serious love affair with science, especially <span style="color: #f1c40f; text-decoration: underline; cursor: pointer;">physics</span>. There's something about the way the universe works that blows my mind every time. I'm always down for a good experiment or a deep dive into some mind-bending theory.</p>
+<p>And hey, when I'm not knee-deep in code or staring up at the stars, you can probably find me doodling away on my tablet. <span style="color: #f1c40f; text-decoration: underline; cursor: pointer;">Graphic design</span> is my way of bringing a little bit of creativity into everything I do.</p>
+<p>So yeah, that's me in a nutshell – a curious soul with a passion for all things tech, science, and creativity. Here's to never-ending discoveries and endless possibilities!</p>
+
+
+                </p>
+        </section>
+        <section id="contact" class="hidden">
+            <!-- Contact Form Goes Here -->
+            <h2>Contact Me</h2>
+            <form id="contactForm">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required><br><br>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required><br><br>
+                <label for="message">Message:</label><br>
+                <textarea id="message" name="message" rows="4" required></textarea><br><br>
+                <input type="submit" value="Send">
+            </form>
+        </section>
+        <section id="arduino" class="hidden">
+            <!-- Arduino Projects Content Goes Here -->
+            <h2>Arduino Projects</h2>
+            <!-- Add your Arduino project descriptions, images, etc. -->
+        </section>
+        <section id="fortran" class="hidden">
+            <!-- Fortran Projects Content Goes Here -->
+            <h2>Fortran Projects</h2>
+            <!-- Add your Fortran project descriptions, images, etc. -->
+        </section>
+        <section id="design" class="hidden">
+            <!-- Graphic Design Projects Content Goes Here -->
+            <h2>Graphic Design Projects</h2>
+            <!-- Add your graphic design project descriptions, images, etc. -->
+        </section>
+    </main>
+
+    <script>
+        function showSection(sectionId) {
+            // Hide all sections
+            var sections = document.querySelectorAll('section');
+            sections.forEach(function(section) {
+                section.classList.add('hidden');
+            });
+
+            // Show the selected section
+            var selectedSection = document.getElementById(sectionId);
+            selectedSection.classList.remove('hidden');
+        }
+
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
+
+            // Extract form data
+            var formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                message: document.getElementById('message').value
+            };
+
+            // Send email using EmailJS
+            emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", formData)
+                .then(function(response) {
+                    console.log('Email sent successfully!', response);
+                    // Optionally, display a success message to the user
+                    alert('Your message has been sent successfully!');
+                }, function(error) {
+                    console.error('Email sending failed:', error);
+                    // Optionally, display an error message to the user
+                    alert('Sorry, there was an error sending your message. Please try again later.');
+                });
+        });
+    </script>
+</body>
+</html>
